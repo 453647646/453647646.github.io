@@ -61,10 +61,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-第一篇博客" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-代理" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/10/22/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time datetime="2019-10-22T11:40:23.000Z" itemprop="datePublished">2019-10-22</time>
+    <a href="/2019/10/23/%E4%BB%A3%E7%90%86/" class="article-date">
+  <time datetime="2019-10-23T07:17:18.147Z" itemprop="datePublished">2019-10-23</time>
 </a>
     
   </div>
@@ -75,7 +75,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/22/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">第一篇博客</a>
+      <a class="article-title" href="/2019/10/23/%E4%BB%A3%E7%90%86/">代理</a>
     </h1>
   
 
@@ -83,15 +83,47 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><hr>
-<p>##第二章</p>
+        <p>﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿—<br>title: JDK代理<br>date: 2019-10-23 15:17:18<br>tags:</p>
 <hr>
-<p>第三章</p>
+<p>#JDK动态代理<br>1、生成源代码<br><code>StringBuff src = new StringBuff();  
+然后通过src.append();方法加入各种语句  
+return src.toString();</code><br>2、将生成的源代码输出到磁盘，保存为.java文件<br>3、编译源代码，并且生成.class文件<br><code>JavaCompiler compiler =ToolProvider.getSystemJavaCompiler;//ToolProvider提供的方法用于获取当前平台的编译器  
+StandardJavaFileManager manager = compiler.getStandardFileManager(null,null,null);  
+/*getStandardFileManager的参数:  
+diagnosticlistener - 用于非致命诊断信息的诊断侦听器；  
+如果为 null，则使用编译器的默认方法来报告诊断信息
+locale - 格式化诊断信息时要应用的语言环境；  
+如果为 null，则使用默认语言环境。  
+charset - 用于解码字节的字符集；  
+如果为 null，则使用平台默认的字符集   
+返回标准文件管理器
+*/  
+Iterable iterable =manager.getJavaFileObject(f);//获取指定对象f加入迭代器  
+ CompilationTask task = compiler.getTask(null,manager,null,null,null,iterable);  
+task.call();//通过call方法来启动编译编译任务  
+manager.close();</code><br>4、将class文件中的内容动态加载到JVM中<br><code>this.getClass().getResource(&quot;&quot;).getPath()是获取这个类所对应的classes文件所在路径.  
+this.getClass().getResource(&quot;/&quot;).getPath()是获取这个类的路径，也就是classpath路径.  
+this.getClass().getClassLoader().getResource(&quot;文件&quot;).getPath()是获取文件所在路径  
+this.getClass().getClassLoader().getResource(&quot;&quot;).getPath()也是获取classpath路径</code><br><code>if(classFile.exists()){  
+     FIleInputStream in = null;  
+     try{  
+          in = new FileInputStream(classFile);  
+          ByteArrayOutStream out = new ByteArrayOutputStream();  
+          byte [] buff = new byte[1024];  
+          int len;  
+          while((len = in.read(buff)) != -1){  
+                  out.write( buff , 0, len );  
+           }  
+           return defineClass(className,out.toByteArray(),0,size());//返回字节码  
+         }catch(Exception e){  
+              e.printStackTrace();  
+    }  
+ }</code><br>5、返回被代理后的代理对象</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/22/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="ck21sl8sp00014wud3gfy0k8y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/23/%E4%BB%A3%E7%90%86/" data-id="ck239tqlw00016wud9nsy03ed" class="article-share-link">Share</a>
       
       
     </footer>
@@ -140,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/22/hello-world/" data-id="ck21sl8sj00004wudb5zi6mfu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/10/22/hello-world/" data-id="ck239tqlj00006wudh8tocw97" class="article-share-link">Share</a>
       
       
     </footer>
@@ -181,7 +213,7 @@
       <ul>
         
           <li>
-            <a href="/2019/10/22/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">第一篇博客</a>
+            <a href="/2019/10/23/%E4%BB%A3%E7%90%86/">代理</a>
           </li>
         
           <li>
